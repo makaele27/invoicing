@@ -1,4 +1,4 @@
-# Contributing to Mallo Invoicing
+# Contributing to Invoicing
 
 Thanks for taking the time to contribute! This document outlines the process for reporting bugs, proposing features, and submitting code.
 
