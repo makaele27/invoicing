@@ -12,7 +12,6 @@ A lightweight, **fully offline, browser-based invoicing application** for small 
 ## Table of Contents
 
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Tech Stack](#tech-stack)
