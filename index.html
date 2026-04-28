@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mallo Invoicing</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar w-56 flex-shrink-0 hidden lg:flex flex-col">
+    <div class="px-5 py-5 border-b border-blue-900/40 flex items-center gap-2">
+      <div class="w-9 h-9 rounded-full bg-white text-blue-700 font-bold flex items-center justify-center">M</div>
+      <div>
+        <div class="text-white font-semibold leading-tight">Mallo</div>
+        <div class="text-xs text-blue-200">Invoicing</div>
+      </div>
+    </div>
+    <div class="group-title">Workspace</div>
+    <nav class="px-2" id="navMain">
+      <a data-route="#/dashboard"><span>📊</span> Dashboard</a>
+      <a data-route="#/invoices"><span>📄</span> Invoices <span id="badgeInvoices" class="badge"></span></a>
+      <a data-route="#/clients"><span>👥</span> Clients</a>
+      <a data-route="#/products"><span>📦</span> Products</a>
+    </nav>
+    <div class="group-title">System</div>
+    <nav class="px-2">
+      <a data-route="#/settings"><span>⚙️</span> Settings</a>
+      <a data-route="#/backup"><span>💾</span> Backup</a>
+    </nav>
+    <div class="mt-auto px-4 py-3 text-[11px] text-blue-200/70 border-t border-blue-900/40">
+      <div>v1.0 · Local-first</div>
+      <div id="userBadge"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 min-w-0 flex flex-col">
+    <header class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center sticky top-0 z-20" id="topbar">
+      <div>
+        <div class="text-xs text-gray-500" id="crumb">Workspace</div>
+        <div class="text-lg font-semibold text-gray-800" id="pageTitle">Dashboard</div>
+      </div>
+      <div class="flex items-center gap-2" id="topActions"></div>
+    </header>
+
+    <div id="view" class="flex-1"></div>
+  </main>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-backdrop" onclick="UI.closeModal()"></div>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button onclick="UI.closeModal()" class="text-gray-400 hover:text-gray-700 text-xl">×</button>
+    </div>
+    <div id="modalBody" class="modal-body"></div>
+    <div id="modalFoot" class="modal-foot"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/views/dashboard.js"></script>
+<script src="js/views/invoices.js"></script>
+<script src="js/views/editor.js"></script>
+<script src="js/views/preview.js"></script>
+<script src="js/views/clients.js"></script>
+<script src="js/views/products.js"></script>
+<script src="js/views/settings.js"></script>
+<script src="js/views/backup.js"></script>
+<script src="js/router.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
