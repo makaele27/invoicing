@@ -65,16 +65,6 @@ A lightweight, **fully offline, browser-based invoicing application** for small 
 
 ---
 
-## Screenshots
-
-> Add screenshots to `docs/screenshots/` and reference them here.
-
-| Dashboard | Invoice Editor | Invoice Preview |
-|-----------|---------------|-----------------|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Editor](docs/screenshots/editor.png) | ![Preview](docs/screenshots/preview.png) |
-
----
-
 ## Getting Started
 
 ### Option 1 — Just open it
