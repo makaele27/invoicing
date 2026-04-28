@@ -1,13 +1,13 @@
 // ============== Store ==============
-const STORAGE_KEY = "mallo_invoicing_v1";
+const STORAGE_KEY = "invoicing_v1";
 
 const Store = (() => {
   const defaultData = () => ({
     settings: {
-      companyName: "Pasta Sisilia Graha",
-      companyAddress: "Jl. Cikatomas II No. 29 Jakarta Selatan, Kota Jakarta Selatan, DKI Jakarta",
-      companyPhone: "6281282001866",
-      companyEmail: "kpwahjudi@gmail.com",
+      companyName: "",
+      companyAddress: "",
+      companyPhone: "",
+      companyEmail: "",
       companyTaxId: "",
       logo: null,
       signature: null,
@@ -17,7 +17,7 @@ const Store = (() => {
       invoicePrefix: "INV/2026/",
       invoiceNextNumber: 1,
       invoicePadding: 4,
-      defaultTerms: "Transfer ke Account\nBank Central Asia\nHALYA DWANITZA GREESLAMI\nA/N: 7310680685",
+      defaultTerms: "",
       defaultNotes: "",
     },
     clients: [],
@@ -182,7 +182,7 @@ const Store = (() => {
 
   function seedDemo() {
     // Sample clients
-    const c1 = saveClient({ name: "Hal's Cookies", email: "hal@example.com", phone: "6287876969204", address: "Jl. Sudirman No. 12, Jakarta", taxId: "" });
+    const c1 = saveClient({ name: "Your Business", email: "business@example.com", phone: "+6281234567890", address: "Jl. Sudirman No. 12, Jakarta", taxId: "" });
     const c2 = saveClient({ name: "Kopi Jaya Abadi", email: "info@kopijaya.id", phone: "6281234567890", address: "Jl. Asia Afrika 45, Bandung", taxId: "" });
     const c3 = saveClient({ name: "Toko Bahagia Sentosa", email: "order@bahagia.co.id", phone: "6281122334455", address: "Jl. Diponegoro 88, Surabaya", taxId: "" });
 
@@ -191,25 +191,25 @@ const Store = (() => {
     saveProduct({ name: "Pasta Bolognese", description: "Slow-cooked beef ragù", price: 70000, taxRate: 10, sku: "PB-001" });
     saveProduct({ name: "Pasta Aglio Olio", description: "Garlic & olive oil", price: 55000, taxRate: 10, sku: "PA-001" });
     saveProduct({ name: "Tiramisu", description: "Classic dessert", price: 45000, taxRate: 10, sku: "DS-001" });
-    saveProduct({ name: "Boxes of 2 Cookies", description: "Hal's Cookies", price: 30000, taxRate: 0, sku: "HC-002" });
-    saveProduct({ name: "Boxes of 6 Cookies", description: "Hal's Cookies", price: 85000, taxRate: 0, sku: "HC-006" });
+    saveProduct({ name: "Boxes of 2 Cookies", description: "Your Business", price: 30000, taxRate: 0, sku: "HC-002" });
+    saveProduct({ name: "Boxes of 6 Cookies", description: "Your Business", price: 85000, taxRate: 0, sku: "HC-006" });
 
     // Sample invoice
     const inv = {
       invNumber: nextInvoiceNumber(),
       invDate: Utils.todayStr(),
       invDue: Utils.addDays(Utils.todayStr(), 14),
-      invRef: "WIC-2025",
-      invSales: "Kelvin Wahjudi",
+      invRef: "",
+      invSales: "",
       status: "Sent",
       clientId: c1.id,
       items: [
-        { id: Utils.uid(), name: "Boxes of 2", desc: "Hal's Cookies", qty: 19, price: 30000, disc: 0, tax: 0 },
-        { id: Utils.uid(), name: "Boxes of 6", desc: "Hal's Cookies", qty: 30, price: 85000, disc: 0, tax: 0 },
-        { id: Utils.uid(), name: "Gavin", desc: "Donation", qty: 1, price: 500000, disc: 0, tax: 0 },
+        { id: Utils.uid(), name: "Boxes of 2", desc: "Your Business", qty: 19, price: 30000, disc: 0, tax: 0 },
+        { id: Utils.uid(), name: "Boxes of 6", desc: "Your Business", qty: 30, price: 85000, disc: 0, tax: 0 },
+        { id: Utils.uid(), name: "Bob", desc: "Donation", qty: 1, price: 500000, disc: 0, tax: 0 },
       ],
       addDisc: 0, addDiscType: "rp", delivery: 0,
-      notes: "Hal's Cookies\nRevenue Sharing\nWIC Bazaar 2025",
+      notes: "Your Business\nRevenue Sharing\nBazaar 2025",
       terms: settings().defaultTerms,
       payments: []
     };
