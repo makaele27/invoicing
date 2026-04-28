@@ -1,4 +1,4 @@
-# Mallo Invoicing
+# Invoicing
 
 A lightweight, **fully offline, browser-based invoicing application** for small businesses, freelancers, and side projects. Create, manage, and export professional invoices in seconds — no signup, no servers, no monthly fees.
 
@@ -72,8 +72,8 @@ A lightweight, **fully offline, browser-based invoicing application** for small 
 The app has no build step. Clone or download the repo, then double-click `index.html`.
 
 ```bash
-git clone https://github.com/<your-username>/mallo-invoicing.git
-cd mallo-invoicing
+git clone https://github.com/<your-username>/invoicing.git
+cd invoicing
 open index.html        # macOS
 xdg-open index.html    # Linux
 start index.html       # Windows
@@ -108,7 +108,7 @@ Drop the contents of this repo into any static host:
 ## Project Structure
 
 ```
-mallo-invoicing/
+invoicing/
 ├── index.html              # App shell (sidebar + topbar + view container)
 ├── app.css                 # All styles (custom + complements Tailwind CDN)
 ├── js/
@@ -159,10 +159,10 @@ mallo-invoicing/
 
 ## Data Storage
 
-Mallo stores everything under a single `localStorage` key:
+Invoice stores everything under a single `localStorage` key:
 
 ```
-mallo_invoicing_v1
+invoicing_v1
 ```
 
 The schema (simplified):
@@ -219,7 +219,7 @@ Open **Backup** → **Download backup (.json)** regularly. To migrate to another
 ### Customising the Invoice Number Format
 
 In **Settings**, change:
-- `Invoice Number Prefix` (e.g. `INV/2026/`, `MALLO-`, etc.)
+- `Invoice Number Prefix` (e.g. `INV/2026/`, `INV_2027`, etc.)
 - `Next Invoice Number` (manual override)
 - `Number Padding` (e.g. 4 → `0001`)
 
