@@ -21,8 +21,8 @@ By participating, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md
 The project is **build-free**. There's nothing to install.
 
 ```bash
-git clone https://github.com/<your-username>/mallo-invoicing.git
-cd mallo-invoicing
+git clone https://github.com/<your-username>/invoicing.git
+cd invoicing
 # Serve locally (any static server works)
 python3 -m http.server 8000
 # Open http://localhost:8000
