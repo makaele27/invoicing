@@ -5,7 +5,7 @@ const InvoicesView = {
   render() {
     UI.setTitle("Invoices", "Workspace");
     UI.setTopActions([
-      UI.btn("＋ New Invoice", () => location.hash = "#/invoices/new", "btn btn-primary")
+      UI.btn("+ New Invoice", () => location.hash = "#/invoices/new", "btn btn-primary")
     ]);
 
     const view = $("view");
@@ -13,9 +13,9 @@ const InvoicesView = {
       <div class="p-6 max-w-7xl mx-auto">
         <div class="card card-elev">
           <div class="flex flex-wrap gap-3 items-center mb-4">
-            <input id="invSearch" placeholder="🔍 Search by number or client..." class="field" style="max-width:320px"
+            <input id="invSearch" placeholder="Search by number or client…" class="field" style="max-width:300px"
               value="${Utils.escapeHtml(InvoicesView.state.search)}">
-            <select id="invStatusFilter" class="field" style="max-width:180px">
+            <select id="invStatusFilter" class="field" style="max-width:160px">
               <option value="all">All statuses</option>
               <option value="Draft">Draft</option>
               <option value="Sent">Sent</option>
@@ -24,14 +24,14 @@ const InvoicesView = {
               <option value="Overdue">Overdue</option>
               <option value="Cancelled">Cancelled</option>
             </select>
-            <select id="invSort" class="field" style="max-width:200px">
+            <select id="invSort" class="field" style="max-width:180px">
               <option value="date_desc">Newest first</option>
               <option value="date_asc">Oldest first</option>
               <option value="total_desc">Highest amount</option>
               <option value="total_asc">Lowest amount</option>
               <option value="number_asc">Number A→Z</option>
             </select>
-            <span id="invCount" class="text-sm text-gray-500 ml-auto"></span>
+            <span id="invCount" style="font-family:var(--font-accent);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-cappuccino);margin-left:auto;"></span>
           </div>
           <div id="invTable" class="scroll-x"></div>
         </div>
@@ -62,17 +62,20 @@ const InvoicesView = {
 
     if (search) {
       const q = search.toLowerCase();
-      list = list.filter(({ inv, cl }) => (inv.invNumber || "").toLowerCase().includes(q) || (cl.name || "").toLowerCase().includes(q));
+      list = list.filter(({ inv, cl }) =>
+        (inv.invNumber || "").toLowerCase().includes(q) ||
+        (cl.name || "").toLowerCase().includes(q)
+      );
     }
     if (status !== "all") list = list.filter(x => x.st === status);
 
     list.sort((a, b) => {
       switch (sort) {
-        case "date_asc": return (a.inv.invDate || "").localeCompare(b.inv.invDate || "");
+        case "date_asc":   return (a.inv.invDate || "").localeCompare(b.inv.invDate || "");
         case "total_desc": return b.t.total - a.t.total;
-        case "total_asc": return a.t.total - b.t.total;
+        case "total_asc":  return a.t.total - b.t.total;
         case "number_asc": return (a.inv.invNumber || "").localeCompare(b.inv.invNumber || "");
-        default: return (b.inv.invDate || "").localeCompare(a.inv.invDate || "");
+        default:           return (b.inv.invDate || "").localeCompare(a.inv.invDate || "");
       }
     });
 
@@ -81,7 +84,7 @@ const InvoicesView = {
     const html = list.length === 0 ? `
       <div class="tbl-empty">
         <p>No invoices match your filters.</p>
-        <button class="btn btn-primary mt-3" onclick="location.hash='#/invoices/new'">＋ New invoice</button>
+        <button class="btn btn-primary mt-3" onclick="location.hash='#/invoices/new'">+ New invoice</button>
       </div>
     ` : `
       <table class="tbl">
@@ -93,19 +96,19 @@ const InvoicesView = {
         <tbody>
           ${list.map(({ inv, cl, t, st }) => `
             <tr>
-              <td><a href="#/invoices/${inv.id}" class="text-blue-600 hover:underline font-medium">${Utils.escapeHtml(inv.invNumber)}</a></td>
-              <td>${Utils.escapeHtml(cl.name)}</td>
-              <td>${Utils.fmtDate(inv.invDate)}</td>
-              <td>${Utils.fmtDate(inv.invDue)}</td>
-              <td class="num-right">${Utils.fmt(t.total)}</td>
-              <td class="num-right">${Utils.fmt(t.paid)}</td>
-              <td class="num-right ${t.balance > 0 ? 'text-red-600' : 'text-green-600'}">${Utils.fmt(t.balance)}</td>
+              <td><a href="#/invoices/${inv.id}" class="tbl-link">${Utils.escapeHtml(inv.invNumber)}</a></td>
+              <td style="color:var(--color-ristretto);">${Utils.escapeHtml(cl.name)}</td>
+              <td style="color:var(--color-cappuccino);">${Utils.fmtDate(inv.invDate)}</td>
+              <td style="color:var(--color-cappuccino);">${Utils.fmtDate(inv.invDue)}</td>
+              <td class="num-right" style="font-family:var(--font-serif);font-size:14px;">${Utils.fmt(t.total)}</td>
+              <td class="num-right" style="color:var(--color-teal-dark);">${Utils.fmt(t.paid)}</td>
+              <td class="num-right" style="color:${t.balance > 0 ? '#8b2e1a' : 'var(--color-teal-dark)'};">${Utils.fmt(t.balance)}</td>
               <td>${Utils.statusPill(st)}</td>
               <td>
-                <div class="flex gap-1 justify-end">
-                  <button class="btn btn-ghost btn-sm" title="Open" onclick="location.hash='#/invoices/${inv.id}'">Open</button>
-                  <button class="btn btn-ghost btn-sm" title="Duplicate" onclick="InvoicesView.duplicate('${inv.id}')">Copy</button>
-                  <button class="btn btn-danger btn-sm" title="Delete" onclick="InvoicesView.remove('${inv.id}')">✕</button>
+                <div style="display:flex;gap:4px;justify-content:flex-end;">
+                  <button class="btn btn-ghost btn-sm" onclick="location.hash='#/invoices/${inv.id}'">Open</button>
+                  <button class="btn btn-ghost btn-sm" onclick="InvoicesView.duplicate('${inv.id}')">Copy</button>
+                  <button class="btn btn-danger btn-sm" onclick="InvoicesView.remove('${inv.id}')">Delete</button>
                 </div>
               </td>
             </tr>

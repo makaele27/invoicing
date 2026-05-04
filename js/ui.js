@@ -37,7 +37,11 @@ const UI = (() => {
   function confirm(msg, onYes, { yesLabel = "Confirm", danger = false } = {}) {
     const ok = btn(yesLabel, () => { closeModal(); onYes(); }, danger ? "btn btn-danger" : "btn btn-primary");
     const cancel = btn("Cancel", closeModal, "btn btn-ghost");
-    openModal({ title: "Please confirm", body: `<p class="text-sm text-gray-700">${Utils.escapeHtml(msg)}</p>`, footer: [cancel, ok] });
+    openModal({
+      title: "Please confirm",
+      body: `<p style="font-family:var(--font-sans);font-weight:300;color:var(--color-ristretto);font-size:14px;line-height:1.6;">${Utils.escapeHtml(msg)}</p>`,
+      footer: [cancel, ok]
+    });
   }
 
   function setTopActions(actions = []) {
